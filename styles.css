@@ -1,3 +1,7 @@
+:root {
+    --shadow-blur: 1px 1px 10px grey;
+}
+
 body {
     margin: 0;
     height: 100vh;
@@ -18,15 +22,20 @@ input {
     text-indent: 1rem;
     font-size: 1.1rem;
     letter-spacing: 2px;
+    margin-bottom: 30px;
 }
 
-label {
-    letter-spacing: 2px;
+input:hover, input:focus {
+    box-shadow: var(--shadow-blur);
 }
 
 input:focus {
     outline: none;
-    box-shadow: 2px 2px 10px grey;
+    border: 1px solid black;
+}
+
+label {
+    letter-spacing: 2px;
 }
 
 .form-top > div:nth-child(1) {
@@ -41,11 +50,12 @@ button {
     border: none;
     border-radius: 5px;
     color: white;
+    font-weight: bold;
     background-color: #6a8383;
 }
 
 button:hover {
-    box-shadow: 2px 2px 10px grey;
+    box-shadow: var(--shadow-blur);
 }
 
 .submit {
@@ -63,7 +73,7 @@ button:hover {
 }
 
 .submit a:hover {
-    text-shadow: 2px 2px 10px grey;
+    text-shadow: var(--shadow-blur);
 }
 
 .section-left {
@@ -76,12 +86,12 @@ button:hover {
     background-color: #9abebe;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap: 3vh;
 }
 
 .intro, .form-top, .submit {
     padding-left: 5vw;
-    padding-right: 20vw;
+    padding-right: 10vw;
 }
 
 .intro {
@@ -95,10 +105,9 @@ button:hover {
 
 form {
     flex: 2;
-    margin-top: 5vh;
     display: flex;
     flex-direction: column;
-    gap: 5vh;
+    gap: 3vh;
 }
 
 .form-top {
@@ -106,12 +115,21 @@ form {
     flex-direction: column;
     gap: 2vh;
     background-color: rgb(255, 255, 255, 0.25);
-    padding-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 1px 10px #6a8383;
 }
 
 .form-field {
     display: flex;
     gap: 3rem;
+}
+
+.github {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 #img-banner {
@@ -157,6 +175,10 @@ form {
     height: 75px;
 }
 
+.github img {
+    height: 25px;
+}
+
 /* Font */
 @font-face {
     font-family: "norse-bold";
@@ -168,26 +190,42 @@ input + span {
     position: relative;
 }
 
-input:valid {
-    border-color: black;
+input + span::before {
+    position: absolute;
+    top: calc(-1.85rem - 30px);
+    left: calc(20vw + 1rem);
 }
 
-input:valid + span::before {
-    position: absolute;
-    top: -1.85rem;
-    left: calc(20vw + 1rem);
-    content: "✓";
-    color: green;
-}
-
-input:invalid + span::before {
-    position: absolute;
-    top: -1.85rem;
-    left: calc(20vw + 1rem);
+.invalid + span::before {
     content: "✖";
     color: red;
 }
 
-input[type="password"]:invalid {
-    border-color: rgb(192, 0, 0);
+.invalid {
+    border-color: red !important;
+}
+
+.valid + span::before {
+    content: "✓";
+    color: green;
+}
+
+input + span::after {
+    position: absolute;
+    top: -1.5rem;
+    color: red;
+    font-size: 0.8rem;
+}
+
+span {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.error1 + span::after {
+    content: "*Must contains at least 6 characters";
+}
+
+.error2 + span::after {
+    content: "*Passwords do not match";
 }
