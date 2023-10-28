@@ -10,19 +10,78 @@ input, label {
     display: block;
 }
 
+input {
+    line-height: 2rem;
+    width: 20vw;
+    border: 1px solid silver;
+    border-radius: 5px;
+    text-indent: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+label {
+    letter-spacing: 2px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 2px 2px 10px grey;
+}
+
+.form-top > div:nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+button {
+    height: 50px;
+    width: 250px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #6a8383;
+}
+
+button:hover {
+    box-shadow: 2px 2px 10px grey;
+}
+
+.submit {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.submit a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.submit a:hover {
+    text-shadow: 2px 2px 10px grey;
+}
+
 .section-left {
     flex: 1;
     position: relative;
 }
 
 .section-right {
-    flex: 1;
+    flex: 2;
     background-color: #9abebe;
-    padding-left: 5vw;
-    padding-right: 20vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.intro, .form-top, .submit {
+    padding-left: 5vw;
+    padding-right: 20vw;
 }
 
 .intro {
@@ -46,11 +105,13 @@ form {
     display: flex;
     flex-direction: column;
     gap: 2vh;
+    background-color: rgb(255, 255, 255, 0.25);
+    padding-top: 10px;
 }
 
 .form-field {
     display: flex;
-    gap: 3vw;
+    gap: 3rem;
 }
 
 #img-banner {
@@ -100,4 +161,33 @@ form {
 @font-face {
     font-family: "norse-bold";
     src: url(Norse-Bold.otf);
+}
+
+/* Validation */
+input + span {
+    position: relative;
+}
+
+input:valid {
+    border-color: black;
+}
+
+input:valid + span::before {
+    position: absolute;
+    top: -1.85rem;
+    left: calc(20vw + 1rem);
+    content: "✓";
+    color: green;
+}
+
+input:invalid + span::before {
+    position: absolute;
+    top: -1.85rem;
+    left: calc(20vw + 1rem);
+    content: "✖";
+    color: red;
+}
+
+input[type="password"]:invalid {
+    border-color: rgb(192, 0, 0);
 }
