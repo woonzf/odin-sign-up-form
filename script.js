@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Check confirm password
     passwordField2.addEventListener("input", () => {
-        if (comparePassword(passwordField, passwordField2)) {
+        if (comparePassword(passwordField.value, passwordField2.value)) {
             passwordField2.classList.remove("invalid", "error2");
             passwordField2.classList.add("valid");
         }
@@ -39,6 +39,7 @@ function checkPasswordLength(password) {
 }
 
 function comparePassword(pw1, pw2) {
-    if (pw1.value !== pw2.value) return false;
+    if (!checkPasswordLength(pw1)) return false;
+    if (pw1 !== pw2) return false;
     return true;
 }
